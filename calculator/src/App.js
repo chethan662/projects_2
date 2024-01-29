@@ -22,7 +22,7 @@ function App() {
   };
 
   const evaluateExpression = (expression) => {
-    const tokens = expression.match(/\d+|[+*/()-]/g);
+    const tokens = expression.match(/\d+|[+*\/()-]/g);
     const numbers = [];
     const operators = [];
 
@@ -77,7 +77,7 @@ function App() {
         break;
       case '/':
         if (operand2 === 0) {
-          throw new Error('Division by zero');
+          return Infinity;
         }
         numbers.push(operand1 / operand2);
         break;
@@ -89,6 +89,7 @@ function App() {
   return (
     <div className="calculator">
       <h1>React Calculator</h1>
+     
       <input type="text" value={display} disabled />
       <div>
         <button onClick={() => appendToDisplay('7')}>7</button>
